@@ -1,10 +1,12 @@
 # HNG_stage2
 
 ## Installation
-Install Flask and Sqlalchemy using pip
+Install Flask, Sqlalchemy and jsonschema using pip
 ```
 pip install Flask 
 pip install Flask-SQLAlchemy
+pip install jsonschema
+
 ```
 Minimal Flask App 
 ```
@@ -25,7 +27,7 @@ Launch any web browser and go to http://localhost:5000/ to see the
 app in action
 
 # Simple CRUD API
-This is a sample API documentation for microservice
+This is a sample API documentation for microservice. It is is to perform CRUD operations of a "person" resources.
 
 ## Version: 1.0.0
 **Contact information:**  nkereuwem.udoudo1@gmail.com  
@@ -34,10 +36,23 @@ This is a sample API documentation for microservice
 #### POST
 ##### Summary: Create person
 ##### Description: Endpoint to create person.
-##### Responses
+##### Endpoint
+```
+https://nkereuwem-flask-api.onrender.com/api
+```
+##### Sample request data: (as json object, "type"="string")
+```
+{"name": "nkereuwem udoudo"}
+```
+##### Sample Responses
 | Code | Description |
 | ---- | ----------- |
-| default | successful operation |
+| 200 | successful operation |
+| 500 | create error |
+
+```
+{'Message': 'Created Successfully'}
+```
 
 ### /api/{user_id}
 #### GET
@@ -46,12 +61,16 @@ This is a sample API documentation for microservice
 ##### Parameters
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| user_id | path | The ID that needs to be fetched. 1.  | Yes | integer |
+| user_id | url path | The ID that needs to be fetched. e.g. (1)  | Yes | integer |
+##### Endpoint
+```
+https://nkereuwem-flask-api.onrender.com/api/1
+``` 
 ##### Responses
 | Code | Description |
 | ---- | ----------- |
 | 200 | successful operation |
-| 404 | Person not found |
+| 404 | Not found |
 
 #### PUT
 ##### Summary: Update Person
@@ -60,12 +79,20 @@ This is a sample API documentation for microservice
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | user_id | path | ID that need to be deleted | Yes | integer |
+##### Endpoint
+```
+https://nkereuwem-flask-api.onrender.com/api/1
+``` 
+##### Sample request data: (as json object, "type"="string")
+```
+{"name": "nkereuwem udoudo"}
+```
 ##### Responses
 | Code | Description |
 | ---- | ----------- |
-| 404 | person not found |
-| 500 | error updating person |
-| default | person created successfully |
+| 404 | Not found |
+| 500 | error updating |
+| 200 | operation successfull |
 
 #### DELETE
 ##### Summary: Delete Person
@@ -74,11 +101,15 @@ This is a sample API documentation for microservice
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | user_id | path | The ID that needs to be deleted | Yes | integer |
+##### Endpoint
+```
+https://nkereuwem-flask-api.onrender.com/api/1
+``` 
 ##### Responses
 | Code | Description |
 | ---- | ----------- |
-| 200 | person deleted successfully |
-| 404 | person not found |
+| 200 | delete successfull |
+| 404 |not found |
 
 ### Basic UML Diagram
 ![Flask Rest API](https://github.com/Nkereuwem03/HNG_stage2/assets/105097028/8ddaf9ad-9f31-458a-b682-860bea1a6d7b)
